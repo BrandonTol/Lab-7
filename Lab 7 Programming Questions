@@ -1,0 +1,94 @@
+1. 
+days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+sales = []
+
+for day in days_of_week:
+    sale = float(input(f"Enter the sales for {day}: "))  # Get sales input from user
+    sales.append(sale)  # Add the sales amount to the list
+
+total_sales = 0
+
+for sale in sales:
+    total_sales += sale
+
+print(f"\nTotal sales for the week: ${total_sales:.2f}")
+
+----------------------------------------------------------------------------------------------------------
+
+2. 
+import random
+
+lottery_numbers = []
+
+for _ in range(7):
+    number = random.randint(0, 9)
+    lottery_numbers.append(number)
+
+print("Your lottery number is:", end=" ")
+for number in lottery_numbers:
+    print(number, end="")
+
+print()
+
+----------------------------------------------------------------------------------------------------------
+
+3. 
+rainfall = []
+months = ["January", "February", "March", "April", "May", "June", 
+          "July", "August", "September", "October", "November", "December"]
+
+for month in months:
+    rain = float(input(f"Rainfall for {month}: "))
+    rainfall.append(rain)
+
+total_rainfall = sum(rainfall)
+average_rainfall = total_rainfall / 12
+max_rainfall = max(rainfall)
+min_rainfall = min(rainfall)
+max_month = months[rainfall.index(max_rainfall)]
+min_month = months[rainfall.index(min_rainfall)]
+
+print(f"Total rainfall: {total_rainfall}")
+print(f"Average rainfall: {average_rainfall:.2f}")
+print(f"Highest rainfall: {max_month} ({max_rainfall})")
+print(f"Lowest rainfall: {min_month} ({min_rainfall})")
+
+----------------------------------------------------------------------------------------------------------
+
+4. 
+numbers = []
+
+for i in range(20):
+    num = float(input("Enter a number: "))
+    numbers.append(num)
+
+lowest = min(numbers)
+highest = max(numbers)
+total = sum(numbers)
+average = total / len(numbers)
+
+print(f"Lowest number: {lowest}")
+print(f"Highest number: {highest}")
+print(f"Total: {total}")
+print(f"Average: {average:.2f}")
+
+----------------------------------------------------------------------------------------------------------
+
+5. 
+def load_account_numbers():
+    with open('charge_accounts.txt', 'r') as file:
+        accounts = file.readlines()
+    return [account.strip() for account in accounts]
+
+def main():
+    account_numbers = load_account_numbers()
+    
+    user_input = input("Enter a charge account number: ")
+    
+    if user_input in account_numbers:
+        print("The account number is valid.")
+    else:
+        print("The account number is invalid.")
+
+main()
