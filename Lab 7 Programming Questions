@@ -92,3 +92,121 @@ def main():
         print("The account number is invalid.")
 
 main()
+
+----------------------------------------------------------------------------------------------------------
+
+6. 
+def larger_than_n(lst, n):
+    for number in lst:
+        if number > n:
+            print(number)
+
+numbers = [10, 20, 30, 40, 50]
+n = 25
+larger_than_n(numbers, n)
+
+----------------------------------------------------------------------------------------------------------
+
+7.
+correct_answers = ['A', 'C', 'A', 'A', 'D', 'B', 'C', 'A', 'C', 'B', 
+                   'A', 'D', 'C', 'A', 'D', 'C', 'B', 'B', 'D', 'A']
+
+def read_student_answers(filename):
+    file = open(filename, 'r')
+    student_answers = [line.strip().upper() for line in file.readlines()]
+    file.close()
+    return student_answers
+
+def grade_exam(correct_answers, student_answers):
+    correct_count = 0
+    incorrect_questions = []
+    
+    for i in range(20):
+        if student_answers[i] == correct_answers[i]:
+            correct_count += 1
+        else:
+            incorrect_questions.append(i + 1)
+    
+    incorrect_count = 20 - correct_count
+    
+    print(f"Total Correct Answers: {correct_count}")
+    print(f"Total Incorrect Answers: {incorrect_count}")
+    print(f"Incorrectly Answered Questions: {incorrect_questions}")
+    
+    if correct_count >= 15:
+        print("Result: You passed the exam!")
+    else:
+        print("Result: You failed the exam.")
+
+def main():
+    filename = 'student_answers.txt'
+    student_answers = read_student_answers(filename)
+    grade_exam(correct_answers, student_answers)
+
+main()
+
+----------------------------------------------------------------------------------------------------------
+
+8.
+def read_names(filename):
+    with open(filename, 'r') as file:
+        return [line.strip() for line in file]
+
+def check_name(names):
+    name = input("Enter a name: ").strip()
+    if name in names:
+        print(f"{name} is among the most popular names.")
+    else:
+        print(f"{name} is not among the most popular names.")
+
+names = read_names('popular_names.txt')
+check_name(names)
+
+----------------------------------------------------------------------------------------------------------
+
+9.
+def read_population_data(filename):
+    file = open(filename, 'r')
+    populations = []
+    for line in file:
+        populations.append(int(line.strip()))
+    file.close()
+    return populations
+
+def calculate_statistics(populations):
+    changes = []
+    for i in range(1, len(populations)):
+        changes.append(populations[i] - populations[i-1])
+
+    average_change = sum(changes) / len(changes)
+    greatest_increase_year = 1951 + changes.index(max(changes))
+    smallest_increase_year = 1951 + changes.index(min(changes))
+
+    print("Average annual change:", average_change)
+    print("Year with greatest increase in population:", greatest_increase_year)
+    print("Year with smallest increase in population:", smallest_increase_year)
+
+populations = read_population_data('USPopulation.txt')
+calculate_statistics(populations)
+
+----------------------------------------------------------------------------------------------------------
+
+10.
+def read_winners(filename):
+    file = open(filename, 'r')
+    winners = []
+    for line in file:
+        winners.append(line.strip())
+    file.close()
+    return winners
+
+def count_team_wins(winners, team_name):
+    return winners.count(team_name)
+
+def main():
+    winners = read_winners('WorldSeriesWinners.txt')
+    team_name = input("Enter the name of a team: ").strip()
+    win_count = count_team_wins(winners, team_name)
+    print(f"{team_name} has won the World Series {win_count} times.")
+
+main()
